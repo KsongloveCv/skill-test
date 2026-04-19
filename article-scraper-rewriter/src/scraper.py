@@ -36,7 +36,8 @@ def scrape_article(url: str, config: Dict) -> Dict[str, str]:
             response.raise_for_status()
             response.encoding = 'utf-8'
             print(response.status_code)
-            
+            if response.status_code != 200:
+                raise Exception(f"HTTP Status {response.status_code} : {url}")
             # 自动检测编码
             # if response.encoding == "ISO-8859-1":
             #     response.encoding = response.apparent_encoding

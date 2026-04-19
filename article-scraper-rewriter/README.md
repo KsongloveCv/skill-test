@@ -4,15 +4,21 @@
 
 ## 快速开始
 
-### 1. 安装依赖
+### Python 环境
+Python 3.10
+
+### 1. 创建虚拟环境
 ```bash
 python -m venv venv
-
+```
+### 2. 激活虚拟环境
 ```bash
 venv\Scripts\activate
-
+```
+### 3. 安装依赖
 ```bash
 pip install -r requirements.txt
+```
 
 ```bash
 清华大学：https://pypi.tuna.tsinghua.edu.cn/simple
@@ -21,3 +27,9 @@ pip install -r requirements.txt
 华中理工大学：http://pypi.hustunique.com/
 山东理工大学：http://pypi.sdutlinux.org/
 豆瓣：http://pypi.douban.com/simple/
+```
+
+### 4. 运行命令
+```bash
+python src/main.py --url "https://www.cnblogs.com/catchadmin/p/19716374" --max-keywords 5 --max-tags 3
+```
