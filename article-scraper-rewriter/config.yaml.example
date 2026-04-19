@@ -1,0 +1,23 @@
+# LLM 配置
+llm:
+  provider: "openai"  # 可选: openai, azure, ollama
+  api_key: ""
+  model: "gpt-4o"
+  base_url: "https://api.openai.com"
+  # Azure 特定配置
+  # endpoint: "https://your-resource.openai.azure.com/"
+  # deployment: "gpt-4"
+  # api_version: "2024-02-15-preview"
+
+# 抓取配置
+scraping:
+  user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+  timeout: 30
+  retry: 3
+  delay: 1  # 请求间隔（秒）
+
+# 默认参数
+defaults:
+  max_keywords: 5
+  max_tags: 3
+  language: "auto"

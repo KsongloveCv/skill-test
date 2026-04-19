@@ -1,0 +1,7 @@
+/article-scraper-rewriter/venv
+/article-scraper-rewriter/*.yaml
+/article-scraper-rewriter/src/__pycache__
+
+/article-scraper-rewriter/original_html/*.html
+/article-scraper-rewriter/original_html/*.txt
+/article-scraper-rewriter/output/*.md
