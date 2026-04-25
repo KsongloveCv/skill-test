@@ -31,5 +31,5 @@ pip install -r requirements.txt
 
 ### 4. 运行命令
 ```bash
-python src/main.py --url "https://www.cnblogs.com/catchadmin/p/19716374" --max-keywords 5 --max-tags 3
+python src/main.py --url "https://www.cnblogs.com/zlt2000/p/19577443" --max-keywords 5 --max-tags 3
 ```
