@@ -5,3 +5,5 @@
 /article-scraper-rewriter/original_html/*.html
 /article-scraper-rewriter/original_html/*.txt
 /article-scraper-rewriter/output/*.md
+/wechat_article_downloader/__pycache__
+/wechat_article_downloader/venv
