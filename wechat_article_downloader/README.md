@@ -1,6 +1,6 @@
 # 微信公众号文章下载工具
 
-基于 Python + wxauto + pyautogui 的 PC 微信自动化工具，支持：
+基于 Python + wxauto4 + pyautogui 的 PC 微信自动化工具，支持：
 - 搜索并打开指定公众号
 - 根据关键词筛选历史文章
 - 自动下载文章内容并保存为 HTML 文件
