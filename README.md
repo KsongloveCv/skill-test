@@ -45,7 +45,7 @@ Skill 是一个专注于内容处理与自动化的 Python 项目集，包含两
 
 ```bash
 # 克隆项目
-git clone https://gitee.com/yong-top/skill.git
+git clone hhttps://gitee.com/yong-top/skill.git
 cd skill
 
 # 安装公共依赖
