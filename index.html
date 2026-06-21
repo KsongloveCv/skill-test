@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <title>月夜狼人杀</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="scanlines" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+
+  <!-- 大厅 -->
+  <section id="screen-lobby" class="screen active">
+    <div class="lobby-card">
+      <div class="moon-emblem" aria-hidden="true">
+        <div class="moon-core"></div>
+      </div>
+      <h1 class="title-glow">月夜狼人杀</h1>
+      <p class="tagline">在霓虹与月光之间，找出潜伏的狼人</p>
+
+      <form id="lobby-form" class="lobby-form">
+        <label class="field">
+          <span>你的昵称</span>
+          <input id="player-name" type="text" maxlength="8" placeholder="输入昵称" required autocomplete="nickname">
+        </label>
+
+        <fieldset class="field">
+          <legend>对局人数</legend>
+          <div class="player-count-options">
+            <label class="count-option">
+              <input type="radio" name="player-count" value="6" checked>
+              <span>6 人局</span>
+              <small>2狼 · 预言家 · 女巫 · 猎人 · 村民</small>
+            </label>
+            <label class="count-option">
+              <input type="radio" name="player-count" value="8">
+              <span>8 人局</span>
+              <small>2狼 · 预言家 · 女巫 · 猎人 · 3村民</small>
+            </label>
+          </div>
+        </fieldset>
+
+        <button type="submit" class="btn-primary">进入牌桌</button>
+      </form>
+
+      <details class="rules-hint">
+        <summary>规则速览</summary>
+        <ul>
+          <li>夜晚：狼人刀人，预言家查验，女巫救/毒（各一次）</li>
+          <li>白天：公布死亡，讨论后投票放逐</li>
+          <li>猎人出局时可开枪带走一人</li>
+          <li>狼人数量 ≥ 好人即狼胜；狼人全灭则好人胜</li>
+        </ul>
+      </details>
+    </div>
+  </section>
+
+  <!-- 游戏主界面 -->
+  <section id="screen-game" class="screen">
+    <header class="game-header">
+      <div class="phase-badge" id="phase-badge">
+        <span class="phase-icon" id="phase-icon">🌙</span>
+        <span id="phase-text">第 1 夜</span>
+      </div>
+      <div class="header-meta">
+        <span id="round-label">回合 1</span>
+        <button id="btn-fast" class="btn-ghost" type="button" aria-pressed="false" aria-label="切换加速模式">加速：关</button>
+        <button id="btn-role" class="btn-ghost" type="button">查看身份</button>
+        <button id="btn-restart" class="btn-ghost danger" type="button">结束对局</button>
+      </div>
+    </header>
+
+    <p id="wolf-hint" class="wolf-hint" hidden></p>
+
+    <main class="table-area">
+      <div class="table-ring" id="player-ring"></div>
+      <div class="table-center">
+        <div class="center-orb"></div>
+        <p id="center-hint" class="center-hint">等待夜晚行动…</p>
+      </div>
+    </main>
+
+    <aside class="side-panel">
+      <section class="panel-block">
+        <h2>行动</h2>
+        <div id="action-panel" class="action-panel">
+          <p class="action-placeholder">游戏加载中…</p>
+        </div>
+      </section>
+      <section id="seer-panel" class="panel-block" hidden>
+        <h2>查验记录</h2>
+        <ul id="seer-history" class="seer-history"></ul>
+      </section>
+      <section id="vote-panel" class="panel-block" hidden>
+        <h2>本轮票型</h2>
+        <ul id="vote-result" class="vote-result"></ul>
+      </section>
+      <section class="panel-block log-block">
+        <h2>对局记录</h2>
+        <ol id="game-log" class="game-log"></ol>
+      </section>
+    </aside>
+  </section>
+
+  <!-- 身份卡弹窗 -->
+  <dialog id="role-dialog" class="modal">
+    <div class="role-card" id="role-card">
+      <p class="role-label">你的身份</p>
+      <h2 id="role-name">村民</h2>
+      <p id="role-desc" class="role-desc"></p>
+      <button id="role-close" class="btn-primary" type="button">我知道了</button>
+    </div>
+  </dialog>
+
+  <!-- 结算弹窗 -->
+  <dialog id="result-dialog" class="modal">
+    <div class="result-card">
+      <p class="result-label" id="result-label">对局结束</p>
+      <h2 id="result-title">好人阵营胜利</h2>
+      <p id="result-detail" class="result-detail"></p>
+      <ul id="role-reveal" class="role-reveal"></ul>
+      <p id="result-meta" class="result-meta"></p>
+      <div class="result-actions">
+        <button id="btn-play-again" class="btn-primary" type="button">再来一局</button>
+        <button id="btn-back-lobby" class="btn-secondary" type="button">返回大厅</button>
+        <button id="btn-review-table" class="btn-ghost" type="button">查看牌桌</button>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="js/constants.js?v=3"></script>
+  <script src="js/game.js?v=3"></script>
+  <script src="js/ui.js?v=3"></script>
+  <script src="js/main.js?v=3"></script>
+  <script>
+    if (!window.GameEngine || !window.WerewolfUI) {
+      document.addEventListener('DOMContentLoaded', function () {
+        var card = document.querySelector('.lobby-card');
+        if (!card) return;
+        var tip = document.createElement('div');
+        tip.className = 'load-error';
+        tip.innerHTML = '<p><strong>游戏脚本加载失败</strong></p><p>请尝试：① 强制刷新（⌘⇧R）② 双击运行 <code>打开游戏.command</code> ③ 终端执行 <code>./start.sh</code></p>';
+        card.prepend(tip);
+      });
+    }
+  </script>
+</body>
+</html>
